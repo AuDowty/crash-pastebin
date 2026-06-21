@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<title>crash-pastebin — share a Windows minidump as a URL</title>
+<meta name="description" content="Drag a Windows .dmp file onto this page to see exception, modules, threads, and system info. Optionally upload and get a shareable URL." />
+<link rel="stylesheet" href="./style.css?v=1" />
+</head>
+<body>
+<header>
+  <div class="brand">
+    <strong>crash-pastebin</strong>
+    <span class="sub">Windows minidump viewer + shareable URLs</span>
+  </div>
+  <nav>
+    <a href="https://github.com/AuDowty/crash-pastebin" target="_blank" rel="noopener">source</a>
+  </nav>
+</header>
+
+<main>
+  <div id="drop" class="drop">
+    <div class="drop-inner">
+      <div class="drop-icon">↓</div>
+      <div class="drop-title">drop a <code>.dmp</code> file here</div>
+      <div class="drop-sub">or <label for="file" class="link">choose a file</label> · parsing runs in your browser</div>
+      <input id="file" type="file" accept=".dmp,application/octet-stream" hidden />
+    </div>
+  </div>
+
+  <div id="status" class="status" hidden></div>
+  <div id="error" class="error" hidden></div>
+
+  <section id="result" hidden>
+    <div class="head-row">
+      <h1 id="filename"></h1>
+      <button id="share-btn" class="share-btn" hidden>Share via URL</button>
+    </div>
+    <div class="exception-card" id="exception-card"></div>
+    <div class="meta-grid" id="meta-grid"></div>
+
+    <nav class="tabs" id="tabs">
+      <button data-tab="modules" class="active">Modules <span id="modules-count"></span></button>
+      <button data-tab="threads">Threads <span id="threads-count"></span></button>
+      <button data-tab="streams">Streams <span id="streams-count"></span></button>
+      <button data-tab="raw">Raw JSON</button>
+    </nav>
+
+    <div class="tab-pane active" id="tab-modules"></div>
+    <div class="tab-pane" id="tab-threads"></div>
+    <div class="tab-pane" id="tab-streams"></div>
+    <div class="tab-pane" id="tab-raw"></div>
+  </section>
+</main>
+
+<footer>
+  Parsed in-browser by a hand-rolled minidump reader compiled to WASM ·
+  <a href="https://github.com/AuDowty" target="_blank" rel="noopener">@AuDowty</a>
+</footer>
+
+<script type="module" src="./app.js?v=1"></script>
+</body>
+</html>

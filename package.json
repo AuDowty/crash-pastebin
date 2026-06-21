@@ -1,0 +1,19 @@
+{
+  "name": "crash-pastebin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build:wasm": "cd wasm && wasm-pack build --target web --out-dir ../public/pkg --release",
+    "build": "npm run build:wasm",
+    "dev": "npm run build:wasm && wrangler dev",
+    "deploy": "npm run build:wasm && wrangler deploy",
+    "test:parser": "cd wasm && wasm-pack build --target nodejs --out-dir ../test/pkg --release && cd .. && node test/check.mjs"
+  },
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0",
+    "@cloudflare/workers-types": "^4.20250101.0"
+  }
+}

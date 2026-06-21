@@ -1,0 +1,8 @@
+target/
+Cargo.lock
+node_modules/
+public/pkg/
+test/pkg/
+.wrangler/
+.dev.vars
+*.dmp
